@@ -54,10 +54,15 @@ class TurnoController{
 
         public function getAll($request, $response, $args) {
             try{
+                $headerValueString = $request->getHeaderLine('token');
+                $decodedToken = Token::DecodeToken($headerValueString);
                 $materia = new Turno;
                 $materia = Turno::get();
-    
+          
+        if($decodedToken->rol == "admin")
+        {
                 $result = $materia;
+        }
             }catch(PDOException $e)
             {
                 $result = array("respuesta" => "No se pudo obtener turnos");

@@ -35,6 +35,7 @@ $app->post('/login',UserController::class . ":login");
 $app->post('/mascota',MascotaController::class . ":add")->add(new AuthMiddleware);
 $app->post('/turnos',TurnoController::class . ":add")->add(new AuthMiddleware);
 $app->get('/turnos',TurnoController::class . ":getAll")->add(new AuthMiddleware);
+
 $app->add(new JsonMiddleware);
 
 $app->run();
